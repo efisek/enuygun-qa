@@ -7,9 +7,13 @@
     <list default="true" id="d941cee5-f708-4612-aae8-360a0f2c634a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/HomePage.java" afterDir="false" />
 >>>>>>> homepage
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/FlightTicketSearchPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FlightTicketSearchPage.java" afterDir="false" />
+>>>>>>> flight-ticket-search-page
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +45,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+<<<<<<< HEAD
     "git-widget-placeholder": "homepage",
+=======
+    "git-widget-placeholder": "flight-ticket-search-page",
+>>>>>>> flight-ticket-search-page
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
