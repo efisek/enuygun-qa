@@ -1,0 +1,16 @@
+Index: src/main/java/pages/HomePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package pages;\n\nimport base.BasePage;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.support.FindBy;\nimport org.openqa.selenium.support.PageFactory;\n\npublic class HomePage extends BasePage {\n\n    public HomePage(WebDriver driver) {\n        super(driver);\n        PageFactory.initElements(driver, this);\n    }\n\n    //Elements\n    @FindBy(xpath = \"//div[@data-testid='search-round-trip-text']\")\n    public WebElement roundTripOption;\n\n    @FindBy(xpath = \"//div[@data-testid='endesign-flight-origin-autosuggestion']\")\n    public WebElement portOrigin;\n\n    @FindBy(xpath = \"//div[@data-testid='endesign-flight-destination-autosuggestion']\")\n    public WebElement portDestination;\n\n    @FindBy(xpath = \"//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker']\")\n    public WebElement departureDate;\n\n    @FindBy(xpath = \"//div[@data-testid='enuygun-homepage-flight-returnDate-datepicker']\")\n    public WebElement returnDate;\n\n    @FindBy(xpath = \"//button[@data-testid='enuygun-homepage-flight-submitButton']\")\n    public WebElement buttonSubmit;\n\n\n}\n\n\n\n\n
+===================================================================
+diff --git a/src/main/java/pages/HomePage.java b/src/main/java/pages/HomePage.java
+--- a/src/main/java/pages/HomePage.java	
++++ b/src/main/java/pages/HomePage.java	
+@@ -32,7 +32,6 @@
+     @FindBy(xpath = "//button[@data-testid='enuygun-homepage-flight-submitButton']")
+     public WebElement buttonSubmit;
+ 
+-
+ }
+ 
+ 
