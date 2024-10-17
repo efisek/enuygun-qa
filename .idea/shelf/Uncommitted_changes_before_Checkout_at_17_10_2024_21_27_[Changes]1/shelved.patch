@@ -1,0 +1,16 @@
+Index: src/test/java/base/BaseTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package base;\n\nimport org.openqa.selenium.WebDriver;\nimport org.testng.ITestResult;\nimport org.testng.annotations.*;\n\nimport java.lang.reflect.Method;\n\npublic class BaseTest {\n\n    protected WebDriver driver;\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/base/BaseTest.java b/src/test/java/base/BaseTest.java
+--- a/src/test/java/base/BaseTest.java	
++++ b/src/test/java/base/BaseTest.java	
+@@ -10,4 +10,5 @@
+ 
+     protected WebDriver driver;
+ 
++
+ }
