@@ -20,7 +20,7 @@ public class SearchFlightTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         FlightTicketSearchPage flightTicketSearchPage = new FlightTicketSearchPage(driver);
 
-        homePage.searchFlightsRoundTrip("round-trip","IST","ESB","2024-10-25","2024-10-28",1,0,0,"business");
+        homePage.searchFlightsRoundTrip("round-trip","IST","ESB","2024-12-25","2024-12-28",1,0,0,"business");
         flightTicketSearchPage.filterDepartureFlightTime("departure","noon",2,10, 0);
 
         assertFlightTimes("departure",10,00,18, 00);
@@ -32,7 +32,7 @@ public class SearchFlightTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         FlightTicketSearchPage flightTicketSearchPage = new FlightTicketSearchPage(driver);
 
-        homePage.searchFlightsRoundTrip("round-trip","IST","ESB","2024-10-23","2024-10-26",1,1,1,"business");
+        homePage.searchFlightsRoundTrip("round-trip","IST","ESB","2025-01-23","2025-01-26",1,1,1,"business");
         flightTicketSearchPage.filterDepartureFlightTime("departure","noon",2,10, 0);
         flightTicketSearchPage.filterAirlines("Türk Hava Yolları");
 

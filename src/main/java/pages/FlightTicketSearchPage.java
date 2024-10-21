@@ -73,7 +73,7 @@ public class FlightTicketSearchPage extends BasePage {
 
             double price = Double.parseDouble(priceText);
             System.out.println(price);
-            prices.add(price);  // Add to the list
+            prices.add(price);
         }
         return prices;
     }

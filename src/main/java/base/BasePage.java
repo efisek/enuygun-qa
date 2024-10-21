@@ -33,9 +33,11 @@ public class BasePage {
         waitForAnElementByElementName(elementName).sendKeys(input);
     }
 
+
     public WebElement findElementByXpath(String xpath){
         return driver.findElement(By.xpath(xpath));
     }
+    //only xpath used as locator type within the project
 
     public List<WebElement> findElementsByXpath(String xpathExpression) {
         return driver.findElements(By.xpath(xpathExpression));

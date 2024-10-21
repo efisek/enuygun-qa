@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Objects;
+
 
 public class HomePage extends BasePage {
 
@@ -95,16 +99,16 @@ public class HomePage extends BasePage {
 
 
     //methods
-    public void searchFlightsRoundTrip(String tripType,String from, String to, String departureDate, String returnDate, int passengerAdult, int passengerChild, int passengerInfant, String cabinClass){
+    public void searchFlightsRoundTrip(String tripType,String from, String to,String departureDate, String returnDate, int passengerAdult, int passengerChild, int passengerInfant, String cabinClass){
         selectTripType(tripType);
         sendInput(getPortOrigin(),from);
         clickToElement(getSuggestedOriginPort());
         sendInput(getPortDestination(),to);
         clickToElement(getSuggestedDestinationPort());
         clickToElement(getDepartureDatePicker());
-        selectDate(departureDate);
+        dateInputHandler(departureDate,"departure");
         clickToElement(getReturnDatePicker());
-        selectDate(returnDate);
+        dateInputHandler(returnDate,"return");
         selectPassengers(passengerAdult,passengerChild,passengerInfant);
         selectCabinClass(cabinClass);
         clickToElement(getButtonSubmit());
@@ -120,13 +124,11 @@ public class HomePage extends BasePage {
         clickToElement(flightDate);
     }
 
-
     //select cabin class
     public void selectCabinClass(String cabinClass) {
         WebElement cabinType = findElementByXpath("//button[@data-testid='enuygun-homepage-flight-"+cabinClass+"Cabin']");
         clickToElement(cabinType);
     }
-
 
     //select the number of passengers
     public void selectPassengers(int numAdults, int numChildren, int numInfants) {
@@ -137,7 +139,6 @@ public class HomePage extends BasePage {
         passengerCount(getInfantCounterPlusButton(), numInfants, 0);  // Default 0
     }
 
-
     //passenger count based on passenger type
     public void passengerCount(WebElement incrementButton, int desiredCount, int defaultCount) {
         int difference = desiredCount - defaultCount;
@@ -147,6 +148,49 @@ public class HomePage extends BasePage {
         }
     }
 
+
+    public void dateInputHandler(String targetDate,String departureOrReturnTypeName) {
+        //this method was created to cover the future dates that are not shown in the date picker when clicked
+        //however, it might not be one of the best practices to pass a static parameter
+
+        String[] targetYearMonthDay = targetDate.split("-");
+        String targetYear = targetYearMonthDay[0];
+        String targetMonth = targetYearMonthDay[1];
+        String targetDay = targetYearMonthDay[2];
+
+        //to get the displayed month and year on the picker
+        String displayedDate = findElementByXpath("(//h3[@data-testid='enuygun-homepage-flight-"+departureOrReturnTypeName+"Date-month-name-and-year'])[1]").getText();
+        String[] currentMonthAndYear = displayedDate.split(" ");
+        String currentMonth = currentMonthAndYear[0];
+        String currentYear = currentMonthAndYear[1];
+
+        int targetMonthInt = Integer.parseInt(targetMonth);
+        int currentMonthInt = convertMonthStringToInt(currentMonth);
+
+        while (!(Objects.equals(targetYear, currentYear) && targetMonthInt == currentMonthInt)) {
+
+            if (Integer.parseInt(targetYear) > Integer.parseInt(currentYear) ||
+                    (Objects.equals(targetYear, currentYear) && targetMonthInt >= currentMonthInt)) {
+                WebElement monthForwardButton = findElementByXpath("//button[@data-testid='enuygun-homepage-flight-"+departureOrReturnTypeName+"Date-month-forward-button']");
+                clickToElement(monthForwardButton);
+            }
+
+            displayedDate = findElementByXpath("(//h3[@data-testid='enuygun-homepage-flight-"+departureOrReturnTypeName+"Date-month-name-and-year'])[1]").getText();
+            currentMonthAndYear = displayedDate.split(" ");
+            currentMonth = currentMonthAndYear[0];
+            currentYear = currentMonthAndYear[1];
+            currentMonthInt = convertMonthStringToInt(currentMonth);
+
+        }
+        selectDate(targetDate);
+    }
+
+    public int convertMonthStringToInt(String monthName) {
+        //"Locale" is used to get the value of the months
+        Locale localeTR = new Locale.Builder().setLanguage("tr").build();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM", localeTR);
+        return java.time.Month.from(formatter.parse(monthName)).getValue();
+    }
 
 }
 
