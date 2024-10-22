@@ -6,37 +6,77 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.FlightTicketSearchPage;
-import pages.HomePage;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SearchFlightTest extends BaseTest {
+    //the parameters used in testcase#1 and testcase#2
+    public final String airlineName="Türk Hava Yolları";
+    public final String tripType="round-trip";
+    public final String from = "IST";
+    public final String to = "ESB";
+    public final String departureDate="";
+    public final String returnDate="";
+    public final int adultPassengerCount=1;
+    public final int childPassengerCount=1;
+    public final int infantPassengerCount=1;
+    public final String flightDirectionDeparture ="departure";
+    public final String flightDirectionReturn ="return";
+    public final  String time="noon";
+    public final int handleNo=2;
+    public final int offsetX=10;
+    public final int offsetY=0;
+    public final int startHour=10;
+    public final int startMinute=00;
+    public final int endHour=18;
+    public final int endMinute=00;
 
+    //the parameters used in testcase#3 addition to testcase#1 & testcase#2
+    //they can be changed due to the desired test case
+    public final String[] firstNames={};
+    public final String[] lastNames={};
+    public final String[] birthDateDay={};
+    public final String[] birthMonthDay={};
+    public final String[] birthDateYear={};
+    public final String[] genders={};
+    public final String email="";
+    public final String mobileNo="";
+    String cardNo = "";
+    String cvv = "";
+    String cardMonth="";
+    String cardYear="";
+
+
+    public void commonStepsForAllCases(){
+        homePage.searchFlightsRoundTrip(tripType,from,to,departureDate,returnDate,adultPassengerCount,childPassengerCount,infantPassengerCount,"business");
+        flightTicketSearchPage.filterDepartureFlightTime(flightDirectionDeparture,time,handleNo,offsetX, offsetY);
+    }
 
     @Test
     public void validateFlightsDepartureTime(){
-        HomePage homePage = new HomePage(driver);
-        FlightTicketSearchPage flightTicketSearchPage = new FlightTicketSearchPage(driver);
-
-        homePage.searchFlightsRoundTrip("round-trip","IST","ESB","2024-12-25","2024-12-28",1,0,0,"business");
-        flightTicketSearchPage.filterDepartureFlightTime("departure","noon",2,10, 0);
-
-        assertFlightTimes("departure",10,00,18, 00);
+        commonStepsForAllCases();
+        assertFlightTimes(flightDirectionDeparture,startHour,startMinute,endHour, endMinute);
     }
-
 
     @Test
     public void validateAirlinesAndFlightsPricesInAscendingOrder(){
-        HomePage homePage = new HomePage(driver);
-        FlightTicketSearchPage flightTicketSearchPage = new FlightTicketSearchPage(driver);
-
-        homePage.searchFlightsRoundTrip("round-trip","IST","ESB","2025-01-23","2025-01-26",1,1,1,"business");
-        flightTicketSearchPage.filterDepartureFlightTime("departure","noon",2,10, 0);
-        flightTicketSearchPage.filterAirlines("Türk Hava Yolları");
-
+        commonStepsForAllCases();
+        flightTicketSearchPage.filterAirlines(airlineName);
         assertFlightPricesAreSortedInAscendingOrder();
+    }
+
+    @Test
+    public void purchaseFlightTicket(){
+        commonStepsForAllCases();
+        flightTicketSearchPage.selectFirstFlight();
+        flightReservationPage.fillContactInfo(email,mobileNo);
+        flightReservationPage.fillPassengersInfoCard(firstNames,lastNames,birthDateDay,birthMonthDay,birthDateYear,genders);
+        flightReservationPage.proceedToCheckout();
+        paymentPage.fillCardInfo(cardNo,cvv,cardMonth,cardYear);
+        paymentPage.submitPayment();
+        assertPaymentConfirmationMessage();
     }
 
 
@@ -54,7 +94,7 @@ public class SearchFlightTest extends BaseTest {
 
             LocalTime flightTime = LocalTime.parse(flightTimeText, timeFormatter);
 
-            // to assert that the flights are between 10:00 - 18:00
+            // to assert that the flights are between the times given
             Assert.assertTrue(flightTime.isAfter(startTime) && flightTime.isBefore(endTime),
                     "Flight time " + flightTimeText + " is not in the desired time range ("+startHour+":"+startMinute+" - "+endHour+":"+endMinute+").");
         }
@@ -72,6 +112,10 @@ public class SearchFlightTest extends BaseTest {
                         "Flight prices are not sorted in ascending order: " + flightPrices);
             }
 
+        }
+
+        public void assertPaymentConfirmationMessage(){
+            Assert.assertTrue(paymentPage.getConfirmationMessage().isDisplayed());
         }
 
 

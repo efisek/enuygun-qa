@@ -10,6 +10,10 @@ import config.Config;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import pages.FlightReservationPage;
+import pages.FlightTicketSearchPage;
+import pages.HomePage;
+import pages.PaymentPage;
 import utils.DriverUtility;
 import utils.ReportManager;
 
@@ -19,6 +23,10 @@ public class BaseTest {
     protected WebDriver driver;
     protected ExtentReports extent;
     protected ExtentTest test;
+    protected HomePage homePage;
+    protected FlightTicketSearchPage flightTicketSearchPage;
+    protected FlightReservationPage flightReservationPage;
+    protected PaymentPage paymentPage;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -32,6 +40,12 @@ public class BaseTest {
         driver.get(Config.getProperty("baseUrl"));
 
         test = extent.createTest(method.getName(),method.getAnnotation(Test.class).description());
+
+        homePage = new HomePage(driver);
+        flightTicketSearchPage = new FlightTicketSearchPage(driver);
+        flightReservationPage = new FlightReservationPage(driver);
+        paymentPage = new PaymentPage(driver);
+
     }
 
     @AfterMethod

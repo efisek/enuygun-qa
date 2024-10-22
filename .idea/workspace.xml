@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d941cee5-f708-4612-aae8-360a0f2c634a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/pages/PaymentPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/BasePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/FlightTicketSearchPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FlightTicketSearchPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/SearchFlightTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/SearchFlightTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +43,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "TestNG.SearchFlight.validateFlightTime.executor": "Run",
     "TestNG.SearchFlightTest.executor": "Run",
-    "TestNG.SearchFlightTest.validateAirlinesAndFlightsPricesInAscendingOrder.executor": "Debug",
+    "TestNG.SearchFlightTest.validateAirlinesAndFlightsPricesInAscendingOrder.executor": "Run",
     "TestNG.SearchFlightTest.validateFlightTime.executor": "Debug",
     "TestNG.SearchFlightTest.validateFlightTimeTwo.executor": "Run",
     "TestNG.SearchFlightTest.validateFlightsDepartureTime.executor": "Debug",
@@ -109,8 +110,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.SearchFlightTest.validateFlightsDepartureTime" />
-        <item itemvalue="TestNG.SearchFlightTest" />
         <item itemvalue="TestNG.SearchFlightTest.validateAirlinesAndFlightsPricesInAscendingOrder" />
+        <item itemvalue="TestNG.SearchFlightTest" />
       </list>
     </recent_temporary>
   </component>

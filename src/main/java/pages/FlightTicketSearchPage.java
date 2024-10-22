@@ -25,6 +25,21 @@ public class FlightTicketSearchPage extends BasePage {
     @FindBy(xpath = "//div[@class='ctx-filter-airline card-header']")
     public WebElement filterAirlines;
 
+    @FindBy(xpath = "flight-0")
+    public WebElement firstListedFlight;
+
+    public WebElement getFilterDepartureArrivalTime() {
+        return filterDepartureArrivalTime;
+    }
+
+    public WebElement getFilterAirlines() {
+        return filterAirlines;
+    }
+
+    public WebElement getFirstListedFlight() {
+        return firstListedFlight;
+    }
+
     //methods
     public void filterDepartureFlightTime(String flightDirection, String time, int handleNo, int offsetX, int offsetY){
         filterFlightTime(flightDirection,time);
@@ -32,7 +47,7 @@ public class FlightTicketSearchPage extends BasePage {
     }
 
     public void filterFlightTime(String flightDirection, String time){
-        clickToElement(filterDepartureArrivalTime);
+        clickToElement(getFilterDepartureArrivalTime());
         WebElement timeFilter = findElementByXpath("//p[@class='search__filter_"+flightDirection+"-"+time+" ']");
         clickToElement(timeFilter);
     }
@@ -49,7 +64,7 @@ public class FlightTicketSearchPage extends BasePage {
     }
 
     public void filterAirlines(String airlines){
-        clickToElement(filterAirlines);
+        clickToElement(getFilterAirlines());
         WebElement airlineNameFilter = findElementByXpath("//span[contains(text(), '"+airlines+"')]");
         clickToElement(airlineNameFilter);
     }
@@ -76,6 +91,10 @@ public class FlightTicketSearchPage extends BasePage {
             prices.add(price);
         }
         return prices;
+    }
+
+    public void selectFirstFlight(){
+        clickToElement(getFirstListedFlight());
     }
 
 

@@ -158,7 +158,7 @@ public class HomePage extends BasePage {
         String targetMonth = targetYearMonthDay[1];
         String targetDay = targetYearMonthDay[2];
 
-        //to get the displayed month and year on the picker
+        //to get the displayed month and year on the picker as text
         String displayedDate = findElementByXpath("(//h3[@data-testid='enuygun-homepage-flight-"+departureOrReturnTypeName+"Date-month-name-and-year'])[1]").getText();
         String[] currentMonthAndYear = displayedDate.split(" ");
         String currentMonth = currentMonthAndYear[0];
