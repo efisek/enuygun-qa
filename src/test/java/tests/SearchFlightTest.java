@@ -17,8 +17,8 @@ public class SearchFlightTest extends BaseTest {
     public final String tripType="round-trip";
     public final String from = "IST";
     public final String to = "ESB";
-    public final String departureDate="";
-    public final String returnDate="";
+    public final String departureDate="2024-12-12";
+    public final String returnDate="2024-12-15";
     public final int adultPassengerCount=1;
     public final int childPassengerCount=1;
     public final int infantPassengerCount=1;
@@ -35,7 +35,7 @@ public class SearchFlightTest extends BaseTest {
     public final int endMinute=00;
 
     //the parameters used in testcase#3 addition to testcase#1 & testcase#2
-    //they can be changed due to the desired test case
+    //inputs should be given and can be changed due to the desired test case
     public final String[] firstNames={};
     public final String[] lastNames={};
     public final String[] birthDateDay={};
