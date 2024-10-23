@@ -167,6 +167,7 @@ public class HomePage extends BasePage {
         int targetMonthInt = Integer.parseInt(targetMonth);
         int currentMonthInt = convertMonthStringToInt(currentMonth);
 
+
         while (!(Objects.equals(targetYear, currentYear) && targetMonthInt == currentMonthInt)) {
 
             if (Integer.parseInt(targetYear) > Integer.parseInt(currentYear) ||
@@ -186,7 +187,7 @@ public class HomePage extends BasePage {
     }
 
     public int convertMonthStringToInt(String monthName) {
-        //"Locale" is used to get the value of the months
+        //"Locale" is used to get the value of the months in Turkish
         Locale localeTR = new Locale.Builder().setLanguage("tr").build();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM", localeTR);
         return java.time.Month.from(formatter.parse(monthName)).getValue();

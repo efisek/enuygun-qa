@@ -10,7 +10,7 @@ public class BrowserFactory {
 
     static {
         browsers.put("chrome", ChromeBrowserSetup::new);
-        //for firefox browser
+        //it can be implemented for other browser
         //browsers.put("firefox", FirefoxBrowserSetup::new);
 
     }

@@ -11,7 +11,7 @@ public class ReportManager {
     public static ExtentReports createInstance(String fileName) {
         ExtentReports extentReports;
 
-        // to create the report directory if doesn't exist
+        // to create the report directory if it doesn't exist
         File reportDir = new File("./test-output");
         if (!reportDir.exists()) {
             reportDir.mkdirs();

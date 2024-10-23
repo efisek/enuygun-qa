@@ -22,6 +22,7 @@ public class SearchFlightTest extends BaseTest {
     public final int adultPassengerCount=1;
     public final int childPassengerCount=1;
     public final int infantPassengerCount=1;
+    public final String cabinClass="business";
     public final String flightDirectionDeparture ="departure";
     public final String flightDirectionReturn ="return";
     public final  String time="noon";
@@ -49,8 +50,9 @@ public class SearchFlightTest extends BaseTest {
     String cardYear="";
 
 
+    //not to write the same code block again
     public void commonStepsForAllCases(){
-        homePage.searchFlightsRoundTrip(tripType,from,to,departureDate,returnDate,adultPassengerCount,childPassengerCount,infantPassengerCount,"business");
+        homePage.searchFlightsRoundTrip(tripType,from,to,departureDate,returnDate,adultPassengerCount,childPassengerCount,infantPassengerCount,cabinClass);
         flightTicketSearchPage.filterDepartureFlightTime(flightDirectionDeparture,time,handleNo,offsetX, offsetY);
     }
 
@@ -80,6 +82,7 @@ public class SearchFlightTest extends BaseTest {
     }
 
 
+    //helper assert methods
     public void assertFlightTimes(String departureOrArrivalTime,int startHour, int startMinute, int endHour, int endMinute) {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 

@@ -64,6 +64,7 @@ public class FlightReservationPage extends BasePage {
 
             WebElement genderInfo = findElementByXpath("//input[@id='gender_"+gender+"_"+passengerIndex+"']");
             clickToElement(genderInfo);
+
         }
     }
 
